@@ -50,7 +50,7 @@ let
   };
 in {
   custom-neovim = pkgs.stdenv.mkDerivation {
-    name = "custom-neovim";
+    name = "nvim";
     unpackPhase = "true";
     buildInputs = [pkgs.makeWrapper pkgs.fzf gh-local pkgs.git];
     buildPhase = "";
