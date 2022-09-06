@@ -31,10 +31,44 @@
         "type": "github"
       }
     },
+    "nvim-parinfer": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1648059699,
+        "narHash": "sha256-Dlzfp3CZTzq8zQeHByWf3ER6/Em+KNGYNI4Z17ui8Lc=",
+        "owner": "gpanders",
+        "repo": "nvim-parinfer",
+        "rev": "82bce5798993f4fe5ced20e74003b492490b4fe8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "gpanders",
+        "repo": "nvim-parinfer",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "nvim-parinfer": "nvim-parinfer",
+        "yuck-vim": "yuck-vim"
+      }
+    },
+    "yuck-vim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1628507071,
+        "narHash": "sha256-lp7qJWkvelVfoLCyI0aAiajTC+0W1BzDhmtta7tnICE=",
+        "owner": "elkowar",
+        "repo": "yuck.vim",
+        "rev": "6dc3da77c53820c32648cf67cbdbdfb6994f4e08",
+        "type": "github"
+      },
+      "original": {
+        "owner": "elkowar",
+        "repo": "yuck.vim",
+        "type": "github"
       }
     }
   },

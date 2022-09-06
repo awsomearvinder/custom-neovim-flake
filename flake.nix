@@ -4,12 +4,34 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+    nvim-parinfer = {
+      url = "github:gpanders/nvim-parinfer";
+      flake = false;
+    };
+    yuck-vim = {
+      url = "github:elkowar/yuck.vim";
+      flake = false;
+    };
   };
 
-  outputs = { self, nixpkgs, flake-utils }: 
+  outputs = inputs@{ self, nixpkgs, flake-utils, nvim-parinfer, yuck-vim }: 
     flake-utils.lib.eachDefaultSystem(system:
       let 
-        pkgs = import nixpkgs { inherit system; };
+        pkgs = import nixpkgs {
+          inherit system;
+          overlays = [(final: prev: { 
+              vimPlugins = prev.vimPlugins // {
+                nvim-parinfer = prev.vimUtils.buildVimPlugin {
+                  name = "nvim-parinfer";
+                  src = inputs.nvim-parinfer;
+                };
+                yuck-vim = prev.vimUtils.buildVimPlugin {
+                  name = "yuck-vim";
+                  src = inputs.yuck-vim;
+                };
+              }; 
+          })]; 
+        };
       in {
         packages = {
           inherit (import ./neovim.nix { inherit pkgs; }) custom-neovim;

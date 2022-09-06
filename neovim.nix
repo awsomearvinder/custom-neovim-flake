@@ -16,6 +16,8 @@ let
     '';
   };
   plugins = with pkgs.vimPlugins; [
+    nvim-parinfer
+    yuck-vim
     auto-pairs
     vim-highlightedyank
     vim-rooter
