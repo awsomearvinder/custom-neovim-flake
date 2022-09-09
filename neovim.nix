@@ -61,7 +61,7 @@ in {
       ln -s ${pkgs.neovim}/bin/nvim $out/bin/nvim
       wrapProgram $out/bin/nvim --set XDG_CONFIG_HOME ${dots} \
         --set XDG_DATA_DIRS ${plugins-folder} \
-        --set PATH "${pkgs.fzf}/bin:${gh-local}/bin:$PATH"
+        --prefix PATH : "${pkgs.fzf}/bin:${gh-local}/bin"
     '';
   };
 }
