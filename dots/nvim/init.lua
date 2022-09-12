@@ -79,6 +79,9 @@ function main()
     vim.opt.termguicolors = true
     vim.opt.number = true;
     vim.opt.smartindent = false;
+    vim.opt.tabstop = 4
+    vim.opt.shiftwidth = 4
+    vim.opt.expandtab = true
     vim.opt.autoindent = true;
     vim.cmd'filetype plugin indent on'
     vim.opt.relativenumber = true;
