@@ -38,6 +38,7 @@ for _, server in ipairs(servers) do
 end
 
 vim.cmd'nnoremap <silent> gd   <cmd>lua vim.lsp.buf.type_definition()<CR>'
+vim.cmd'nnoremap <silent> gr   <cmd>lua vim.lsp.buf.hover()<CR>'
 vim.cmd'nnoremap <silent> g[ <cmd>lua vim.diagnostic.goto_prev()<CR>'
 vim.cmd'nnoremap <silent> g] <cmd>lua vim.diagnostic.goto_next()<CR>'
 vim.cmd'nnoremap <silent> ga <cmd>lua vim.lsp.buf.code_action()<CR>'
