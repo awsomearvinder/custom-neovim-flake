@@ -36,6 +36,10 @@ for _, server in ipairs(servers) do
       .update_capabilities(vim.lsp.protocol.make_client_capabilities());
   }
 end
+nvim_lsp.emmet_ls.setup({
+  capabilities = vim.lsp.protocol.make_client_capabilities(),
+  filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less' }
+})
 
 vim.cmd'nnoremap <silent> gd   <cmd>lua vim.lsp.buf.type_definition()<CR>'
 vim.cmd'nnoremap <silent> gr   <cmd>lua vim.lsp.buf.hover()<CR>'
