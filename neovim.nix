@@ -19,6 +19,7 @@ let
     nvim-parinfer
     yuck-vim
     auto-pairs
+    nvim-ts-autotag
     vim-highlightedyank
     vim-rooter
     gruvbox-nvim
