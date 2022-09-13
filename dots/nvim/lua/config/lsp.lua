@@ -42,6 +42,7 @@ nvim_lsp.emmet_ls.setup({
 })
 
 vim.cmd'nnoremap <silent> gd   <cmd>lua vim.lsp.buf.type_definition()<CR>'
+vim.cmd'nnoremap <silent> gf   <cmd>lua vim.lsp.buf.rename()<CR>'
 vim.cmd'nnoremap <silent> gr   <cmd>lua vim.lsp.buf.hover()<CR>'
 vim.cmd'nnoremap <silent> g[ <cmd>lua vim.diagnostic.goto_prev()<CR>'
 vim.cmd'nnoremap <silent> g] <cmd>lua vim.diagnostic.goto_next()<CR>'
