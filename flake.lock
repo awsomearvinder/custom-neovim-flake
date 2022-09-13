@@ -15,6 +15,22 @@
         "type": "github"
       }
     },
+    "git-conflict": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1661957422,
+        "narHash": "sha256-SkKZxrHKFpZsqnUlr+ft1wSdMP9l6YMly8f9o4Mb81c=",
+        "owner": "akinsho",
+        "repo": "git-conflict.nvim",
+        "rev": "0f87781ad92957a5354197baed9a6ace56332aa7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "akinsho",
+        "repo": "git-conflict.nvim",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1662019588,
@@ -50,6 +66,7 @@
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
+        "git-conflict": "git-conflict",
         "nixpkgs": "nixpkgs",
         "nvim-parinfer": "nvim-parinfer",
         "yuck-vim": "yuck-vim"

@@ -70,7 +70,8 @@ modules = {
     "nerdtree",
     "keybindings",
     "orgmode-notes",
-    "octo"
+    "octo",
+    "git-conflict",
 }
 
 function main()

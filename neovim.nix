@@ -43,6 +43,7 @@ let
     cmp-buffer
     octo-nvim
     nvim-web-devicons
+    git-conflict
   ];
   plugins-folder = pkgs.stdenv.mkDerivation {
     name = "neovim-plugins";
