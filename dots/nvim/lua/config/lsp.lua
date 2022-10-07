@@ -29,7 +29,7 @@ cmp.setup({
 })
 
 local nvim_lsp = require'lspconfig';
-local servers = {"rust_analyzer", "pyright", "tsserver", "elmls", "hls", "purescriptls", "rnix", "gopls"};
+local servers = {"rust_analyzer", "pyright", "tsserver", "elmls", "hls", "purescriptls", "rnix", "gopls", "jdtls"};
 for _, server in ipairs(servers) do 
   nvim_lsp[server].setup {
     capabilities = require('cmp_nvim_lsp')
@@ -49,7 +49,7 @@ vim.cmd'nnoremap <silent> g] <cmd>lua vim.diagnostic.goto_next()<CR>'
 vim.cmd'nnoremap <silent> ga <cmd>lua vim.lsp.buf.code_action()<CR>'
 
 
-vim.cmd'autocmd BufWritePre *.rs lua vim.lsp.buf.formatting()'
+vim.cmd'autocmd BufWritePre *.rs,*.java lua vim.lsp.buf.formatting()'
 vim.cmd'autocmd BufWritePre *.elm lua vim.lsp.buf.formatting()'
 vim.cmd(
   'autocmd BufWritePre *.js,*.ts,*.tsx,*.jsx Neoformat prettier'
