@@ -5,16 +5,6 @@
 let
   dots = ./dots;
   buildVimPlugin = pkgs.vimUtils.buildVimPlugin;
-  gh-local = pkgs.stdenv.mkDerivation {
-    name = "local-gh";
-    buildInputs = [pkgs.makeWrapper];
-    #TODO: FIX.
-    buildCommand = ''
-      mkdir -p $out/bin
-      ln -s ${pkgs.gh}/bin/gh $out/bin/gh
-      wrapProgram $out/bin/gh --set GH_CONFIG_DIR '/home/bender/.config/gh'
-    '';
-  };
   plugins = with pkgs.vimPlugins; [
     nvim-parinfer
     yuck-vim
@@ -56,14 +46,16 @@ in {
   custom-neovim = pkgs.stdenv.mkDerivation {
     name = "nvim";
     unpackPhase = "true";
-    buildInputs = [pkgs.makeWrapper pkgs.fzf gh-local pkgs.git];
+    buildInputs = [pkgs.makeWrapper pkgs.fzf pkgs.gh pkgs.git];
     buildPhase = "";
     installPhase = ''
       mkdir -p $out/bin
       ln -s ${pkgs.neovim}/bin/nvim $out/bin/nvim
-      wrapProgram $out/bin/nvim --set XDG_CONFIG_HOME ${dots} \
+      wrapProgram $out/bin/nvim \
+        --add-flags "-u ${dots}/nvim/init.lua" \
+        --prefix XDG_CONFIG_DIRS : "${dots}" \
         --set XDG_DATA_DIRS ${plugins-folder} \
-        --prefix PATH : "${pkgs.fzf}/bin:${gh-local}/bin"
+        --prefix PATH : "${pkgs.fzf}/bin:${pkgs.gh}/bin"
     '';
   };
 }
