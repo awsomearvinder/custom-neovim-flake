@@ -33,7 +33,7 @@ local servers = {"rust_analyzer", "pyright", "tsserver", "elmls", "hls", "puresc
 for _, server in ipairs(servers) do 
   nvim_lsp[server].setup {
     capabilities = require('cmp_nvim_lsp')
-      .update_capabilities(vim.lsp.protocol.make_client_capabilities());
+      .default_capabilities();
   }
 end
 nvim_lsp.emmet_ls.setup({
