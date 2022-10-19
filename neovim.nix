@@ -3,7 +3,21 @@
   ...
 }: 
 let
-  dots = ./dots;
+  compile-script = pkgs.writeScriptBin "compile-fennel-bin.sh" ''
+  ${pkgs.fennel}/bin/fennel --compile $1 > ''${1%.fnl}.lua;
+  rm $1
+  '';
+  dots = pkgs.stdenv.mkDerivation {
+    name = "compiled-neovim-confs";
+    src = ./dots;
+    buildPhase = ''
+    find -name "*.fnl" -exec ${compile-script}/bin/compile-fennel-bin.sh {} \;
+    '';
+    installPhase = ''
+    mkdir -p $out/lib
+    cp -r . $out/lib
+    '';
+  };
   buildVimPlugin = pkgs.vimUtils.buildVimPlugin;
   plugins = with pkgs.vimPlugins; [
     nvim-parinfer
@@ -52,8 +66,8 @@ in {
       mkdir -p $out/bin
       ln -s ${pkgs.neovim}/bin/nvim $out/bin/nvim
       wrapProgram $out/bin/nvim \
-        --add-flags "-u ${dots}/nvim/init.lua" \
-        --prefix XDG_CONFIG_DIRS : "${dots}" \
+        --add-flags "-u ${dots}/lib/nvim/init.lua" \
+        --prefix XDG_CONFIG_DIRS : "${dots}/lib" \
         --set XDG_DATA_DIRS ${plugins-folder} \
         --prefix PATH : "${pkgs.fzf}/bin:${pkgs.gh}/bin"
     '';
