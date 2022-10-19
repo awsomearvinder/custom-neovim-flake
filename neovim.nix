@@ -20,7 +20,7 @@ let
   };
   buildVimPlugin = pkgs.vimUtils.buildVimPlugin;
   plugins = with pkgs.vimPlugins; [
-    nvim-parinfer
+    parinfer-rust
     yuck-vim
     auto-pairs
     nvim-ts-autotag
