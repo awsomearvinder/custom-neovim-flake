@@ -31,6 +31,7 @@
       cmp_nvim_lsp (require "cmp_nvim_lsp")
       servers ["rust_analyzer" "pyright" "tsserver" "elmls" "hls" "purescriptls" "rnix" "gopls" "jdtls" "sqls"]]
   (each [_ server (ipairs servers)] ; not sure how to do this in a cleaner way
-    (. nvim_lsp server "setup") {:capabilities (cmp_nvim_lsp.default_capabilities)}))
+    (let [server_to_setup (. nvim_lsp server)]
+      (server_to_setup.setup {:capabilities (cmp_nvim_lsp.default_capabilities)}))))
 (vim.cmd "autocmd BufWritePre *.rs,*.java,*.elm lua vim.lsp.buf.formatting()")
 (vim.cmd "autocmd BufWritePre *.js,*.ts,*.tsx,*.jsx Neoformat prettier")
