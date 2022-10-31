@@ -44,6 +44,6 @@
         packages = {
           inherit (import ./neovim.nix { inherit pkgs; }) custom-neovim;
         };
-        defaultPackage = self.packages.x86_64-linux.custom-neovim;
+        defaultPackage = self.packages.${system}.custom-neovim;
       });
 }
