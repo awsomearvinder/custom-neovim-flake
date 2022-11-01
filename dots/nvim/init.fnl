@@ -9,6 +9,7 @@
   (set vim.wo.signcolumn "yes")
   (set vim.o.termguicolors true)
   (set vim.o.completeopt "menuone,noselect")
+  (set vim.o.cursorline true)
   (vim.cmd "colorscheme gruvbox")
   (let [modules [:lsp
                  :telescope
