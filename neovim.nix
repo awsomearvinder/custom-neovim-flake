@@ -32,7 +32,7 @@ let
     vimtex
     vim-sensible
     vim-nix
-    (nvim-treesitter.withPlugins (p: builtins.attrValues p))
+    (nvim-treesitter.withPlugins (_: pkgs.tree-sitter.allGrammars))
     nvim-lspconfig
     telescope-nvim
     plenary-nvim
