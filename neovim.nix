@@ -56,8 +56,7 @@ let
       ${pkgs.lib.concatMapStringsSep "\n" (path: "ln -s ${path} $out/nvim/site/pack/plugins/start/")  plugins }
       '';
   };
-in {
-  custom-neovim = pkgs.stdenv.mkDerivation {
+  custom-neovim-raw = pkgs.stdenv.mkDerivation {
     name = "nvim";
     unpackPhase = "true";
     buildInputs = [pkgs.makeWrapper pkgs.fzf pkgs.gh pkgs.git];
@@ -72,4 +71,13 @@ in {
         --prefix PATH : "${pkgs.fzf}/bin:${pkgs.gh}/bin"
     '';
   };
+in {
+  custom-neovim = pkgs.writeShellScriptBin "nvim"
+    ''
+      if [ "$NVIM" != "" ]; then
+        ${custom-neovim-raw}/bin/nvim --server "$NVIM" --remote-send "<ESC>:e $1<CR>"
+      else
+        ${custom-neovim-raw}/bin/nvim "$1"
+      fi
+    '';
 }
