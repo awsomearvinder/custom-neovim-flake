@@ -75,7 +75,11 @@ in {
   custom-neovim = pkgs.writeShellScriptBin "nvim"
     ''
       if [ "$1" == "cd" ]; then
-        ${custom-neovim-raw}/bin/nvim --server "$NVIM" --remote-send "<C-\><C-n>:cd $(pwd)/$2<CR>icd $2<CR>"
+        DIR="$HOME"
+        if [ "$2" != "" ]; then
+          DIR="$2"
+        fi
+        ${custom-neovim-raw}/bin/nvim --server "$NVIM" --remote-send "<C-\><C-n>:cd $(pwd)/$DIR<CR>icd $DIR<CR>"
         exit 0
       fi
 
