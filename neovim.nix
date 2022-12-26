@@ -75,7 +75,7 @@ in {
   custom-neovim = pkgs.writeShellScriptBin "nvim"
     ''
       if [ "$NVIM" != "" ]; then
-        ${custom-neovim-raw}/bin/nvim --server "$NVIM" --remote-send "<ESC>:e $1<CR>"
+        ${custom-neovim-raw}/bin/nvim --server "$NVIM" --remote-send "<C-\><C-n>:e $1<CR>"
       else
         ${custom-neovim-raw}/bin/nvim "$1"
       fi
