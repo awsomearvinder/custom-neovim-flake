@@ -79,7 +79,8 @@ in {
         if [ "$2" != "" ]; then
           DIR="$2"
         fi
-        ${custom-neovim-raw}/bin/nvim --server "$NVIM" --remote-send "<C-\><C-n>:cd $(pwd)/$DIR<CR>icd $DIR<CR>"
+        DIR=$(realpath -s $DIR)
+        ${custom-neovim-raw}/bin/nvim --server "$NVIM" --remote-send "<C-\><C-n>:cd $DIR<CR>icd $DIR<CR>"
         exit 0
       fi
 
