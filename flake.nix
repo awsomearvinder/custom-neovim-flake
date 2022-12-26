@@ -41,6 +41,9 @@
           })]; 
         };
       in {
+        devShell = pkgs.mkShell {
+          packages = [pkgs.fennel];
+        };
         packages = {
           inherit (import ./neovim.nix { inherit pkgs; }) custom-neovim;
         };
