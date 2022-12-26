@@ -76,7 +76,7 @@ in {
     ''
       if [ "$1" == "cd" ]; then
         DIR="."
-        if [ "$2" != "" ]; then
+        if [ -z $2 ]; then
           DIR="$2"
         fi
         DIR=$(realpath -s $DIR)
@@ -84,10 +84,10 @@ in {
         exit 0
       fi
 
-      if [ "$NVIM" != "" ]; then
-        ${custom-neovim-raw}/bin/nvim --server "$NVIM" --remote-send "<C-\><C-n>:e $1<CR>"
-      else
+      if [ -z $NVIM ]; then
         ${custom-neovim-raw}/bin/nvim "$1"
+      else
+        ${custom-neovim-raw}/bin/nvim --server "$NVIM" --remote-send "<C-\><C-n>:e $1<CR>"
       fi
     '';
 }
