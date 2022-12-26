@@ -6,11 +6,11 @@
   (set vim.o.undofile true)
   (set vim.o.ignorecase true)
   (set vim.o.smartcase true)
-  (set vim.wo.signcolumn "yes")
+  (set vim.wo.signcolumn :yes)
   (set vim.o.termguicolors true)
   (set vim.o.completeopt "menuone,noselect")
   (set vim.o.cursorline true)
-  (set vim.opt.shell "elvish")
+  (set vim.opt.shell :elvish)
   (vim.cmd "autocmd TermOpen * setlocal scl=no nonumber norelativenumber")
   (vim.cmd "colorscheme gruvbox")
   (let [modules [:lsp
@@ -22,5 +22,6 @@
                  :octo
                  :git-conflict]]
     (each [_ value (ipairs modules)]
-      (require (.. "config." value)))))
+      (require (.. :config. value)))))
+
 (main)

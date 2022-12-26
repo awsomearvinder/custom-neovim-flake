@@ -1,28 +1,22 @@
-(vim.keymap.set ["t"] "<C-x>" "<C-\\><C-N>")
-(vim.keymap.set ["t"] "<Esc>" "<C-\\><C-N>")
-(vim.keymap.set ["v" "i" "n"] "<C-x>" "<Esc>")
-(let [wk (require "which-key")]
+(vim.keymap.set [:t] :<C-x> "<C-\\><C-N>")
+(vim.keymap.set [:t] :<Esc> "<C-\\><C-N>")
+(vim.keymap.set [:v :i :n] :<C-x> :<Esc>)
+(let [wk (require :which-key)]
   (wk.setup {})
-  (wk.register {
-                :t ["<cmd> term<CR>i" "Terminal"]
-                :f {
-                    :name "telescope"
+  (wk.register {:t ["<cmd> term<CR>i" :Terminal]
+                :f {:name :telescope
                     :f ["<cmd>Telescope find_files<CR>" "Find File"]
                     :g ["<cmd>Telescope live_grep<CR>" "Live Grep"]}
-                :p ["<cmd>NERDTreeToggle<CR>" "Toggle NERDTree"]
-                :s {
-                    :name "split"
-                    :v ["<cmd>vsp new <CR>" "Vertical"]
-                    :h ["<cmd>sp new <CR>" "Horizontal"]}
-                :l {
-                     :name "language"
-                     :r ["<cmd>lua vim.lsp.buf.rename()<CR>" "Rename"]
-                     :h ["<cmd>lua vim.lsp.buf.hover()<CR>" "hover docs"]
-                     :a ["<cmd>lua vim.lsp.buf.code_action()<CR>" "code actions"]}}
-    {:prefix "<leader>"})
-  (wk.register {
-                :g {
-                    :name "navigation"
+                :p [:<cmd>NERDTreeToggle<CR> "Toggle NERDTree"]
+                :s {:name :split
+                    :v ["<cmd>vsp new <CR>" :Vertical]
+                    :h ["<cmd>sp new <CR>" :Horizontal]}
+                :l {:name :language
+                    :r ["<cmd>lua vim.lsp.buf.rename()<CR>" :Rename]
+                    :h ["<cmd>lua vim.lsp.buf.hover()<CR>" "hover docs"]
+                    :a ["<cmd>lua vim.lsp.buf.code_action()<CR>"
+                        "code actions"]}} {:prefix :<leader>})
+  (wk.register {:g {:name :navigation
                     :h ["<cmd>wincmd h<CR>" "Go to left window"]
                     :l ["<cmd>wincmd l<CR>" "Go to right window"]
                     :k ["<cmd>wincmd k<CR>" "Go to top window"]
