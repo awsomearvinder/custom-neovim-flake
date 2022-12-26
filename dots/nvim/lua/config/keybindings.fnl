@@ -1,6 +1,10 @@
+(vim.keymap.set ["t"] "<C-x>" "<C-\\><C-N>")
+(vim.keymap.set ["t"] "<Esc>" "<C-\\><C-N>")
+(vim.keymap.set ["v" "i" "n"] "<C-x>" "<Esc>")
 (let [wk (require "which-key")]
   (wk.setup {})
   (wk.register {
+                :t ["<cmd> term<CR>i" "Terminal"]
                 :f {
                     :name "telescope"
                     :f ["<cmd>Telescope find_files<CR>" "Find File"]

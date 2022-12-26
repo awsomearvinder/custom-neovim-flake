@@ -10,6 +10,8 @@
   (set vim.o.termguicolors true)
   (set vim.o.completeopt "menuone,noselect")
   (set vim.o.cursorline true)
+  (set vim.opt.shell "elvish")
+  (vim.cmd "autocmd TermOpen * setlocal scl=no nonumber norelativenumber")
   (vim.cmd "colorscheme gruvbox")
   (let [modules [:lsp
                  :telescope
