@@ -75,7 +75,7 @@ in {
   custom-neovim = pkgs.writeShellScriptBin "nvim"
     ''
       if [ "$1" == "cd" ]; then
-        DIR="$HOME"
+        DIR="."
         if [ "$2" != "" ]; then
           DIR="$2"
         fi
