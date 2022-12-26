@@ -74,6 +74,11 @@ let
 in {
   custom-neovim = pkgs.writeShellScriptBin "nvim"
     ''
+      if [ "$1" == "cd" ]; then
+        ${custom-neovim-raw}/bin/nvim --server "$NVIM" --remote-send "<C-\><C-n>:cd $2<CR>i"
+        exit 0
+      fi
+
       if [ "$NVIM" != "" ]; then
         ${custom-neovim-raw}/bin/nvim --server "$NVIM" --remote-send "<C-\><C-n>:e $1<CR>"
       else
