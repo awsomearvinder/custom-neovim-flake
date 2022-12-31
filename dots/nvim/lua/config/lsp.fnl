@@ -28,6 +28,7 @@
                :rnix
                :gopls
                :jdtls
+               :terraformls
                :sqls]]
   (each [_ server (ipairs servers)] ; not sure how to do this in a cleaner way
     (let [server_to_setup (. nvim_lsp server)]
